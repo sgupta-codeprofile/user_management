@@ -13,3 +13,12 @@ steps to run projects
 7- cd userManagement
 8- python manage.py runserver
 9- open web browser-->>>> open lcoalhost:8000
+
+Login-detail
+ username- shubham
+ password - 1234
+ 
+ admin-login 
+ 
+ username- admin
+ password - loginlogin
