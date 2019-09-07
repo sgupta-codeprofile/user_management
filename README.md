@@ -22,3 +22,5 @@ Login-detail
  
  username- admin
  password - loginlogin
+ 
+ NOTE->> After registration user create as not active. First login admin pannel and active the user to allow login in userDashboard.
