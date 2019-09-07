@@ -1,0 +1,79 @@
+{% extends 'management/header.html' %}
+{% load static %}
+
+{%block index%}
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'management/css/userDashboard.css' %}">
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand" style="color:white;">Welcome</span>
+        <span style="color:white;" class="navbar-brand">{{authDetails.username}}</span>
+          </div>
+
+<a  class="nav navbar-nav navbar-right" href="{% url 'management:logout' %}"><button style="margin-top:5px;margin-left5px;" type="button" class="btn btn-danger">Logout</button></a>
+    </div>
+</nav>
+
+<div class="container">
+  <h3>User Detail</h3>
+  <p>Would you like to edit details</p>
+      <a href="{% url 'management:userEditDetail'%}"><button type="button" class="btn btn-success"><i class="fa fa-edit"></i> Edit
+
+</button></a>
+{% if updateImageSucces is True %}
+ <p style="color:green;text-align:center">IMAGE UPDATED SUCCESSFULLY</p>
+    {% endif %}
+        <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Contact Number</th>
+          <th>DOB</th>
+
+        <th>Gender</th>
+        <th>Status</th>
+          <th>Profile Image</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>{{authDetails.username}}</td>
+        <td>{{authDetails.first_name}}</td>
+        <td>{{authDetails.last_name}}</td>
+        <td>{{authDetails.email}}</td>
+        <td>{{userDetail.phoneNumber}}</td>
+          <td>{{userDetail.dateOfBirth}}</td>
+        <td>
+            {% if userDetail.gender is 1%}
+            Male
+            {% elif userDetail.gender is 2 %}
+            Female
+            {% else %}
+            N\A
+            {% endif %}
+        </td>
+        <td>
+            Active
+        </td>
+          <td>
+                <img src="{{media}}/media/{{userDetail.profileImage}}" width="20px" height="20px;">
+              &nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'management:uploadImage'%}"><i class="fa fa-plus"></i></a>
+          </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+</body>
+{%endblock%}

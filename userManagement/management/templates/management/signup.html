@@ -1,0 +1,96 @@
+{% extends 'management/header.html' %}
+{% load static %}
+
+{%block index%}
+    <title>signup</title>
+    <link rel="stylesheet" href="{% static 'management/css/particals.css' %}">
+    <link rel="stylesheet" href="{% static 'management/css/particalsOne.css' %}">
+    <script src="{% static 'management/js/partical.js' %}"></script>
+
+</head>
+<body id="index">
+<div class="container">
+    <p>{{ form.errors.non_field_errors}}</p>
+<p>{{SignupForm.errors}}</p>
+            <form class="form-horizontal" id="signup-form" method="POST">
+                {% csrf_token %}
+                <h2>Registration</h2>
+                    {% if UsernameExist is True %}
+                      <p style="color:red"> Username is already exitst</p>
+                    {% endif %}
+                    {% if passwordNotMatch is True %}
+                      <p style="color:red">Password not match</p>
+                {% endif %}
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        {{SignupForm.firstName}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        {{SignupForm.lastName}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Username</label>
+                    <div class="col-sm-9">
+                        {{SignupForm.username}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label">Email* </label>
+                    <div class="col-sm-9">
+                        {{SignupForm.userEmail}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password*</label>
+                    <div class="col-sm-9">
+                        {{SignupForm.password}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
+                    <div class="col-sm-9">
+                        {{SignupForm.confirmPassword}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
+                    <div class="col-sm-9">
+                        {{SignupForm.dateOfBirth}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+                    <div class="col-sm-9">
+                        {{SignupForm.phoneNumber}}
+                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Gender</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    {{SignupForm.chooseGender}}
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- /.form-group -->
+                <!--<div class="form-group">-->
+                    <!--<div class="col-sm-9 col-sm-offset-3">-->
+                        <!--<span class="help-block">*Required fields</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form> <!-- /form -->
+        </div> <!-- ./container -->
+    <div id="particles-js"></div>
+</body>
+{%endblock%}

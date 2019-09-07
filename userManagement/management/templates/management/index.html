@@ -1,0 +1,45 @@
+{% extends 'management/header.html' %}
+{% load static %}
+
+{%block index%}
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'management/css/particals.css' %}">
+    <link rel="stylesheet" href="{% static 'management/css/particalsOne.css' %}">
+    <script src="{% static 'management/js/partical.js' %}"></script>
+</head>
+<body id="index">
+    <div class="container">
+        <div id="login-box">
+            <div class="logo">
+                <img src="{% static 'management/images/login_asset.jpg' %}" class="img img-responsive img-circle center-block"/>
+                <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+            </div>
+            {% if dataSaveSucess is True %}
+            <p style="color:#48ff00;text-align:center">User Created Successfully </p>
+            {% endif %}
+            {% if userNotActive is True %}
+            <p style="color:red;text-align:center">User is not active </p>
+            {% endif %}
+            <form class="form-horizontal" id="login-form" method="POST">
+                {% csrf_token %}
+
+            <div class="controls">
+                {{LoginForm.userName}}
+                <br>
+                {{LoginForm.password}}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="{% url 'management:signup' %}"><button type="button" class="btn btn-default btn-block btn-custom-register">Register</button></a>
+                    </div>
+                </div>
+
+            </div>
+            </form>
+        </div>
+    </div>
+<div id="particles-js"></div>
+</body>
+{%endblock%}
